@@ -560,6 +560,10 @@ h2.section-title { font-size: var(--fs-h2); }
   letter-spacing: -0.025em;
   color: #fff;
 }
+/* Founder's name. Weight only — colour inherits, so it reads ink in prose and
+   gold inside the pull quote on the dark section. */
+.name { font-weight: 600; }
+
 .pullquote cite {
   display: block;
   margin-top: 2.25rem;

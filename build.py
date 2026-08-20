@@ -872,6 +872,21 @@ PAGES = {
 }
 
 
+FOUNDER = "Mishal Anzari"
+
+
+def emphasise_name(html):
+    """Set the founder's name in the heavier weight wherever it appears.
+
+    Applied to the generated HTML rather than written into each copy string, so
+    the name stays a single plain-text value in one place and cannot drift out
+    of sync with the correction list. Only the weight is set — colour is left to
+    inherit, so the name still reads gold inside the pull quote on the dark
+    section and ink inside body prose.
+    """
+    return html.replace(FOUNDER, '<strong class="name">%s</strong>' % FOUNDER)
+
+
 _STAMP_CACHE = {}
 
 
@@ -901,7 +916,7 @@ def stamp(html):
 def main():
     total = 0
     for name, fn in PAGES.items():
-        html = stamp(fix(fn()))
+        html = stamp(emphasise_name(fix(fn())))
         path = os.path.join(OUT, name)
         io.open(path, "w", encoding="utf-8").write(html)
         size = os.path.getsize(path)
