@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+._*
+
+# Editor / tooling noise
+*.swp
+.idea/
+.vscode/
+
+# Never publish the WordPress export that lives beside this folder:
+# database dumps and wp-config.php carry credentials, salts and user data.
+*.sql
+wp-config.php
+*.zip
+
+# Internal review notes — never publish
+NOTES.local.md
