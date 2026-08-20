@@ -36,6 +36,9 @@ TYPO_FIXES = [
     ("scenes.We",                "scenes. We"),
     ("industry.Fields:",         "industry. Fields:"),
     ("grow.The",                 "grow. The"),
+    # The founder's name appeared both ways in the source copy. Confirmed by
+    # the owner as Anzari.
+    ("Mishal Ansari",            "Mishal Anzari"),
 ]
 
 SITE = {
@@ -101,7 +104,7 @@ def header(active):
       %s
     </nav>
     <div class="header-cta">
-      <a class="btn btn--primary" href="%s">%s%s</a>
+      <a class="btn btn--call" href="%s">%s<span class="btn__label">%s</span></a>
     </div>
     <button class="nav-toggle" type="button" aria-expanded="false"
             aria-controls="primary-nav" aria-label="Open menu">%s</button>

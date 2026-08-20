@@ -210,6 +210,24 @@ h2.section-title { font-size: var(--fs-h2); }
 
 .btn svg { width: 1.05em; height: 1.05em; fill: currentColor; flex: 0 0 auto; }
 
+/* The header call button. Outlined rather than a solid slab: as a filled block
+   it measured 151px against a 116px logo at 375px — 40% of the header — so the
+   CTA was heavier than the brand mark it sat next to. The gold glyph carries
+   the emphasis instead, and navy only arrives on hover. */
+.btn--call {
+  background-color: transparent;
+  background-image: linear-gradient(var(--navy), var(--navy));
+  color: var(--ink);
+  border-color: rgba(15, 43, 80, .3);
+  font-size: .8125rem;
+  letter-spacing: .08em;
+  padding: .85em 1.5em;
+  min-height: 48px;
+}
+.btn--call svg { fill: var(--gold-text); transition: fill .4s var(--ease); }
+.btn--call:hover, .btn--call:focus-visible { color: #fff; border-color: var(--navy); }
+.btn--call:hover svg, .btn--call:focus-visible svg { fill: var(--gold-bright); }
+
 /* 5. Header ------------------------------------------------------------- */
 
 .site-header {
@@ -252,7 +270,7 @@ h2.section-title { font-size: var(--fs-h2); }
   .site-header__logo img { width: 124px; }
   .nav-toggle { display: inline-flex; order: 3; }
   .header-cta { order: 2; }
-  .header-cta .btn { min-height: 44px; padding: .55em 1em; font-size: .75rem; letter-spacing: .06em; white-space: nowrap; }
+  .header-cta .btn { min-height: 46px; padding: .6em 1.1em; font-size: .75rem; letter-spacing: .06em; white-space: nowrap; }
 
   /* Anchored to the header so the panel always spans the viewport. */
   .nav {
@@ -268,6 +286,28 @@ h2.section-title { font-size: var(--fs-h2); }
   .nav a:last-child { border-bottom: 0; }
   .nav a::after { display: none; }
   .nav a[aria-current="page"] { color: var(--gold-text); }
+}
+
+/* On a phone the number is what makes the button wide, and it does not need to
+   be read — the whole control is a tel: link. Collapsing to the glyph gives the
+   logo room to lead. The label is visually hidden rather than display:none, so
+   it still carries the accessible name for screen readers. */
+@media (max-width: 560px) {
+  .header-cta .btn--call {
+    width: 46px;
+    padding: 0;
+    gap: 0;
+    justify-content: center;
+  }
+  .btn--call .btn__label {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .btn--call svg { width: 19px; height: 19px; }
 }
 
 /* 6. Hero --------------------------------------------------------------- */
@@ -702,6 +742,10 @@ h2.section-title { font-size: var(--fs-h2); }
   width: 22px; height: 1px; background: rgba(255,255,255,.3);
   transition: background-color var(--slow) var(--ease);
 }
+/* Widens the touch target to 44px without moving the 22px mark or changing the
+   spacing between dots. These are controls, not text, so the inline-link
+   exemption for small targets does not apply to them. */
+.slider__dot::after { content: ""; position: absolute; inset: 0 -8px; }
 .slider__dot[aria-selected="true"]::before { background: var(--gold-bright); }
 .slider__dot:hover::before { background: rgba(255,255,255,.6); }
 
